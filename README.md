@@ -11,6 +11,8 @@ main_page.py — class MainPage — наследник класса BasePage —
 
 login_page.py — class LoginPage — наследник класса BasePage — методы взаимодействия с Login страницей.
 
+product_page.py — class ProductPage — наследник класса BasePage — методы взаимодействия со страницей товара.
+
 locators.py — локаторы, в виде констант. Для каждой страницы свой класс с локаторами.
 
 Всё завернуто в классы, чтобы было удобно импортировать.
