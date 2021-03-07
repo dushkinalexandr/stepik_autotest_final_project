@@ -1,4 +1,3 @@
-from selenium.webdriver.common.by import By
 from .base_page import BasePage
 from ..locators import MainPageLocators
 
@@ -6,7 +5,7 @@ from ..locators import MainPageLocators
 # ImportError: attempted relative import with no known parent package
 
 """
-Page Object, который будет связан с главной страницей интернет-магазина.
+Page Object, который связан с главной страницей интернет-магазина.
 """
 
 
