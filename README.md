@@ -1,4 +1,4 @@
-# stepik_autotest_final_project
+# Автоматизация тестирования с помощью Selenium и Python
 В этом модуле мы создали с нуля полноценный тестовый проект, который является финальным заданием. 
 
 Тестирование сайта: http://selenium1py.pythonanywhere.com
