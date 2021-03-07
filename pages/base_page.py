@@ -1,6 +1,6 @@
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
-import math
+import math, os
 
 """
 Для начала сделаем базовую страницу, от которой будут унаследованы все остальные классы.

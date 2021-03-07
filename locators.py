@@ -14,8 +14,9 @@ class ProductPageLocators():
     BTN_ADD_TO_BASKET = (By.CSS_SELECTOR, ".btn-add-to-basket")
     PRODUCT_NAME_IN_STORE = (By.CSS_SELECTOR, ".product_main>h1")
     PRODUCT_PRICE_IN_STORE = (By.CSS_SELECTOR, ".product_main .price_color")
-    PRODUCT_NAME_IN_BASKET = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div > strong")
-    PRODUCT_PRICE_IN_BASKET = (By.CSS_SELECTOR, ".alert-info p:first-child strong")
+    PRODUCT_NAME_IN_BASKET = (By.CSS_SELECTOR, "#messages div:first-child strong")
+    PRODUCT_PRICE_IN_BASKET = (By.CSS_SELECTOR, "#messages div:nth-child(3) strong")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages div:first-child")
 
 
 class BasketPageLocators():
