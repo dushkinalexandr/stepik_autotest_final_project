@@ -12,4 +12,13 @@ class LoginPageLocators():
 
 class ProductPageLocators():
     BTN_ADD_TO_BASKET = (By.CSS_SELECTOR, ".btn-add-to-basket")
+    PRODUCT_NAME_IN_STORE = (By.CSS_SELECTOR, ".product_main>h1")
+    PRODUCT_PRICE_IN_STORE = (By.CSS_SELECTOR, ".product_main .price_color")
+    PRODUCT_NAME_IN_BASKET = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div > strong")
+    PRODUCT_PRICE_IN_BASKET = (By.CSS_SELECTOR, ".alert-info p:first-child strong")
+
+
+class BasketPageLocators():
+    PRODUCT_NAME_IN_BASKET = (By.CSS_SELECTOR, "#basket_formset > div > div > div.col-sm-4 > h3 > a")
+    PRODUCT_PRICE_IN_BASKET = (By.CSS_SELECTOR, "#basket_formset > div > div > div:nth-child(5) > p")
 

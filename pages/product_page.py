@@ -1,18 +1,27 @@
 from .base_page import BasePage
 from ..locators import ProductPageLocators
+from ..locators import BasketPageLocators
+import time
 
 """
-Page Object, который связан с главной страницей интернет-магазина.
+Page Object, который связан со страницей товара.
 """
 
 
-class BasketPage(BasePage):
-    def go_to_login_page(self):
-        login_link = self.browser.find_element(*ProductPageLocators.BTN_ADD_TO_BASKET)
-        login_link.click()
-        alert = self.browser.switch_to.alert
-        alert.accept()
+class ProductPage(BasePage):
+    def guest_can_add_product_to_basket(self):
+        btn_add_to_basket = self.browser.find_element(*ProductPageLocators.BTN_ADD_TO_BASKET)
+        btn_add_to_basket.click()
 
-    # def should_be_login_link(self):
-    #     assert self.is_element_present(*BasketPageLocators.LOGIN_LINK), "Login link is not presented"
-    #     # символ *, он указывает на то, что мы передали именно пару, и этот кортеж нужно распаковать
+    def guest_can_see_product_name(self):
+        product_name_in_store = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_IN_STORE)
+        product_name_in_basket = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_IN_BASKET)
+        print(f'Name in store: {product_name_in_store}, Name in basket: {product_name_in_basket}')
+        assert product_name_in_store.text == product_name_in_basket.text, "Product name is no the same"
+
+    def product_price_is_correct(self):
+        product_prise_in_store = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE_IN_STORE)
+        product_price_in_basket = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE_IN_BASKET)
+        print(f'Price in store: {product_prise_in_store}, Price in basket: {product_price_in_basket}')
+        assert product_prise_in_store.text == product_price_in_basket.text, "Price is wrong"
+

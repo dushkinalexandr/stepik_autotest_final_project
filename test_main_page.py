@@ -46,5 +46,3 @@ def test_guest_should_see_login_page(browser):
 #     page_form.open()
 #     page_form.should_be_register_form()
 
-
-
