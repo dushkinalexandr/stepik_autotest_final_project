@@ -16,6 +16,7 @@ class BasePage():
         self.browser.implicitly_wait(timeout)
 
     def open(self):
+        # Open URL
         self.browser.get(self.url)
 
     def is_element_present(self, how, what):
@@ -30,6 +31,7 @@ class BasePage():
         return True
 
     def solve_quiz_and_get_code(self):
+        # Solve quiz in alert message
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
         answer = str(math.log(abs((12 * math.sin(float(x))))))
