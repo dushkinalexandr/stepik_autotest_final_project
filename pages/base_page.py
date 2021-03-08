@@ -3,14 +3,14 @@ from selenium.common.exceptions import NoAlertPresentException
 import math
 
 """
-Для начала сделаем базовую страницу, от которой будут унаследованы все остальные классы.
-В ней мы опишем вспомогательные методы для работы с драйвером.
+Page Object, base page from which all other classes inherit.
+Helper methods for working with the driver are described.
 """
 
 
 class BasePage():
     def __init__(self, browser, url, timeout=10):
-        # конструктор — метод, который вызывается, когда мы создаем объект
+        # constructor - a method that is called when we create an object
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
@@ -21,8 +21,8 @@ class BasePage():
 
     def is_element_present(self, how, what):
         """
-        :param how:  - как искать (css, id, xpath)
-        :param what: - что искать (строка-селектор)
+        :param how:  - how to search (css, id, xpath)
+        :param what: - what to look for (selector string)
         """
         try:
             self.browser.find_element(how, what)
