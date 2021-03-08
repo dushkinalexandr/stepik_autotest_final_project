@@ -1,7 +1,6 @@
 from .base_page import BasePage
 from ..locators import ProductPageLocators
 from ..locators import BasketPageLocators
-import time
 
 """
 Page Object, который связан со страницей товара.
