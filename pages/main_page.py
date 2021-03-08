@@ -11,6 +11,7 @@ Page Object, который связан с главной страницей и
 
 class MainPage(BasePage):
     def go_to_login_page(self):
+        # Open login page
         login_link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
         login_link.click()
         alert = self.browser.switch_to.alert
