@@ -1,6 +1,6 @@
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
-import math, os
+import math
 
 """
 Для начала сделаем базовую страницу, от которой будут унаследованы все остальные классы.
@@ -22,7 +22,6 @@ class BasePage():
         """
         :param how:  - как искать (css, id, xpath)
         :param what: - что искать (строка-селектор)
-        :return:
         """
         try:
             self.browser.find_element(how, what)
