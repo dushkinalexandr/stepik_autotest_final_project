@@ -36,6 +36,11 @@ class ProductPage(BasePage):
         print(f'Price in store: {product_prise_in_store.text}, Price in basket: {product_price_in_basket.text}')
         assert product_prise_in_store.text == product_price_in_basket.text, "Price is wrong"
 
+    def should_not_be_success_message(self):
+        # not guest_can_see_message_product_add_to_basket()
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE_ADD_PRODUCT), \
+            "Success message is presented, but should not be"
+
     def guest_can_add_product_to_basket(self):
         # Start all checking
         self.add_product_to_basket()
