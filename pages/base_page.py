@@ -45,6 +45,16 @@ class BasePage():
 
     def is_disappeared(self, how, what, timeout=4):
         # будет ждать до тех пор, пока элемент не исчезнет
+        """
+        WebDriverWait(driver, timeout, poll_frequency=0.5, ignored_exceptions=None)
+
+        Args:
+        driver - Instance of WebDriver (Ie, Firefox, Chrome or Remote)
+        timeout - Number of seconds before timing out
+        poll_frequency - sleep interval between calls By default, it is 0.5 second.
+        ignored_exceptions - iterable structure of exception classes ignored during calls.
+                             By default, it contains NoSuchElementException only.
+        """
         try:
             WebDriverWait(self.browser, timeout, 1, TimeoutException). \
                 until_not(EC.presence_of_element_located((how, what)))
