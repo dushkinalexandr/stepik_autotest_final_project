@@ -46,3 +46,9 @@ def test_guest_should_see_login_page(browser):
 #     page_form.open()
 #     page_form.should_be_register_form()
 
+def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/en-gb/"
+    page = MainPage(browser, link)
+    page.open()
+    page.got_to_basket_page()
+    page.guest_can_see_message_basket_is_empty()
