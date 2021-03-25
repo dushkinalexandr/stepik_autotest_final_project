@@ -34,3 +34,4 @@ class BasketPageLocators():
     PRODUCT_NAME_IN_BASKET = (By.CSS_SELECTOR, "#basket_formset > div > div > div.col-sm-4 > h3 > a")
     PRODUCT_PRICE_IN_BASKET = (By.CSS_SELECTOR, "#basket_formset > div > div > div:nth-child(5) > p")
     BASKET_EMPTY_MESSAGE = (By.CSS_SELECTOR, "#content_inner p")
+    PRESENCE_PRODUCT_IN_BASKET = (By.CSS_SELECTOR, "#basket_formset")
