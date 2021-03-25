@@ -3,6 +3,7 @@ from selenium.common.exceptions import NoAlertPresentException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from ..locators import BasePageLocators
 import math
 
 
@@ -19,9 +20,35 @@ class BasePage():
         self.url = url
         self.browser.implicitly_wait(timeout)
 
-    def open(self):
-        # Open URL
-        self.browser.get(self.url)
+    def go_to_login_page(self):
+        # Open login page
+        login_link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
+        login_link.click()
+        try:
+            alert = self.browser.switch_to.alert
+            alert.accept()
+        except NoAlertPresentException:
+            print("No alert presented")
+
+    def is_disappeared(self, how, what, timeout=4):
+        # будет ждать до тех пор, пока элемент не исчезнет
+        """
+        WebDriverWait(driver, timeout, poll_frequency=0.5, ignored_exceptions=None)
+
+        Args:
+        driver - Instance of WebDriver (Ie, Firefox, Chrome or Remote)
+        timeout - Number of seconds before timing out
+        poll_frequency - sleep interval between calls By default, it is 0.5 second.
+        ignored_exceptions - iterable structure of exception classes ignored during calls.
+                             By default, it contains NoSuchElementException only.
+        """
+        try:
+            WebDriverWait(self.browser, timeout, 1, TimeoutException). \
+                until_not(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+
+        return True
 
     def is_element_present(self, how, what):
         """
@@ -43,25 +70,13 @@ class BasePage():
 
         return False
 
-    def is_disappeared(self, how, what, timeout=4):
-        # будет ждать до тех пор, пока элемент не исчезнет
-        """
-        WebDriverWait(driver, timeout, poll_frequency=0.5, ignored_exceptions=None)
+    def open(self):
+        # Open URL
+        self.browser.get(self.url)
 
-        Args:
-        driver - Instance of WebDriver (Ie, Firefox, Chrome or Remote)
-        timeout - Number of seconds before timing out
-        poll_frequency - sleep interval between calls By default, it is 0.5 second.
-        ignored_exceptions - iterable structure of exception classes ignored during calls.
-                             By default, it contains NoSuchElementException only.
-        """
-        try:
-            WebDriverWait(self.browser, timeout, 1, TimeoutException). \
-                until_not(EC.presence_of_element_located((how, what)))
-        except TimeoutException:
-            return False
-
-        return True
+    def should_be_login_link(self):
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
+        # символ *, он указывает на то, что мы передали именно пару, и этот кортеж нужно распаковать
 
     def solve_quiz_and_get_code(self):
         # Solve quiz in alert message
