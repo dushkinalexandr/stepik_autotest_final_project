@@ -51,4 +51,5 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     page = MainPage(browser, link)
     page.open()
     page.got_to_basket_page()
+    page.guest_cant_see_product_in_basket()
     page.guest_can_see_message_basket_is_empty()
