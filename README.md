@@ -29,7 +29,7 @@ test_product_page - тест добавления товара в корзину
 
 
 ### Команда для запуска финальной проверки:
-** pytest -v --tb=line --language=en -m need_review test_product_page.py
+**pytest -v --tb=line --language=en -m need_review test_product_page.py
 
 #### Ожидаемый результат:
 12 passed, 8 deselected, 1 xfailed
