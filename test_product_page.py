@@ -7,17 +7,6 @@ import time
 URL_PRODUCT_NewYear = ["http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear",
                        "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"]
 
-# URL_PRODUCT = ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
-#                "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
-#                "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer2",
-#                "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer3",
-#                "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer4",
-#                "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer5",
-#                "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer6",
-#                pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7", marks=pytest.mark.xfail),
-#                "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
-#                "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"]
-
 """
 xfile - номер страницы, на которой тест падает с ошибкой "AssertionError: Product name is no the same"
 mask - шаблон URL
@@ -32,12 +21,12 @@ xlink = pytest.param(mask+str(xfile), marks=pytest.mark.xfail(reason="mistake on
 links.insert(xfile, xlink)
 
 
+@pytest.mark.need_review
 @pytest.mark.parametrize('link', links)
 def test_guest_can_add_product_to_basket(browser, link):
     page = ProductPage(browser, link)
     page.open()
     page.guest_can_add_product_to_basket()
-    # time.sleep(30)
 
 
 @pytest.mark.parametrize('link', URL_PRODUCT_NewYear)
@@ -90,6 +79,7 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.should_be_login_link()
 
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
@@ -97,13 +87,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page.go_to_login_page()
 
 
-# def test_guest_check_basket(browser):
-#     link = "http://selenium1py.pythonanywhere.com/en-gb/basket/"
-#     page = ProductPage(browser, link)
-#     page.open()
-#     page.add_product_to_basket()
-
-
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-shellcoders-handbook_209/"
     page = BasketPage(browser, link)
@@ -113,37 +97,6 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page.guest_can_see_message_basket_is_empty()
 
 
-"""
-setup — функция, которая выполнится перед запуском каждого теста из класса, обычно туда входит подготовка данных, 
-и teardown — функция, которая выполняется ПОСЛЕ каждого теста из класса, обычно там происходит удаление тех данных, которые мы создали во время теста.
-
-@pytest.fixture - запускать автоматически перед каждым тест-кейсом
-scoupe="function" - запускать на каждую функцию
-autouse=True - запускать автоматически без явного вызова фикстуры
-"""
-# @pytest.mark.login
-# class TestLoginFromProductPage():
-#     @pytest.fixture(scope="function", autouse=True)
-#     def setup(self):
-#         self.product = ProductFactory(title="Best book created by robot")
-#         # создаем по апи
-#         self.link = self.product.link
-#         yield
-#         # после этого ключевого слова начинается teardown
-#         # выполнится после каждого теста в классе
-#         # удаляем те данные, которые мы создали
-#         self.product.delete()
-#
-#     def test_guest_can_go_to_login_page_from_product_page(self, browser):
-#         page = ProductPage(browser, self.link)
-#         # дальше обычная реализация теста
-#
-#     def test_guest_should_see_login_link(self, browser):
-#         page = ProductPage(browser, self.link)
-#         # дальше обычная реализация теста
-
-
-# @pytest.mark.new_user
 class TestUserAddToBasketFromProductPage():
 
     @pytest.fixture(scope="function", autouse=True)
@@ -162,6 +115,7 @@ class TestUserAddToBasketFromProductPage():
         page.open()
         page.should_not_be_success_message()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
         page = ProductPage(browser, link)
