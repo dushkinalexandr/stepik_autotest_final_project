@@ -1,6 +1,7 @@
 import pytest
 from .pages.product_page import ProductPage
 from .pages.basket_page import BasketPage
+from .pages.login_page import LoginPage
 import time
 
 URL_PRODUCT_NewYear = ["http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear",
@@ -142,17 +143,28 @@ autouse=True - запускать автоматически без явного
 #         # дальше обычная реализация теста
 
 
+# @pytest.mark.new_user
 class TestUserAddToBasketFromProductPage():
-    link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
 
-    def test_user_cant_see_success_message(self, browser, link):
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
+        email = str(time.time()) + "@newuseremail.edu"
+        password = "new_user_pass_" + str(time.time())
+        self.new_user = LoginPage(browser, link)
+        # self.link = self.link
+        self.new_user.open()
+        self.new_user.register_new_user(email, password)
+
+    def test_user_cant_see_success_message(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
         page = ProductPage(browser, link)
         page.open()
         page.should_not_be_success_message()
 
-    def test_user_can_add_product_to_basket(self, browser, link):
+    def test_user_can_add_product_to_basket(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
         page = ProductPage(browser, link)
         page.open()
         page.guest_can_add_product_to_basket()
-        # time.sleep(30)
 
