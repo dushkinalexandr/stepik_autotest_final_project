@@ -19,6 +19,11 @@ class BasePageLocators():
 class LoginPageLocators():
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
     REGISTER_FORM = (By.CSS_SELECTOR, "#register_form")
+    FIELD_REGISTRATION_EMAIL = (By.CSS_SELECTOR, "#id_registration-email")
+    FIELD_REGISTRATION_PASSWORD = (By.CSS_SELECTOR, "#id_registration-password1")
+    FIELD_REGISTRATION_PASSWORD_REPEAT = (By.CSS_SELECTOR, "#id_registration-password2")
+    BUTTON_REGISTRATION_USER = (By.CSS_SELECTOR, "[name='registration_submit']")
+    ICON_OK_SIGN = (By.CSS_SELECTOR, ".icon-ok-sign")
 
 
 class ProductPageLocators():

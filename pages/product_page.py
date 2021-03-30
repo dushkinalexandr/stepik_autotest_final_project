@@ -1,5 +1,6 @@
 from .base_page import BasePage
 from ..locators import ProductPageLocators
+from selenium.common.exceptions import NoAlertPresentException
 
 """
 Page Object, which is linked to the product page.
@@ -11,6 +12,18 @@ class ProductPage(BasePage):
         # Adding a product to the basket
         btn_add_to_basket = self.browser.find_element(*ProductPageLocators.BTN_ADD_TO_BASKET)
         btn_add_to_basket.click()
+
+    def guest_can_add_product_to_basket(self):
+        # Start all checking
+        self.add_product_to_basket()
+        try:
+            self.solve_quiz_and_get_code()
+        except NoAlertPresentException:
+            print("No alert presented")
+        self.guest_can_see_message_product_add_to_basket()
+        self.guest_can_see_same_product_name()
+        self.guest_can_see_message_price_basket()
+        self.guest_can_see_correct_price_basket()
 
     def guest_can_see_message_product_add_to_basket(self):
         # Checking the display of the message that the item has been added to the basket
@@ -45,13 +58,4 @@ class ProductPage(BasePage):
         # not guest_can_see_message_product_add_to_basket()
         assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE_ADD_PRODUCT), \
             "Success message should have disappeared, but not gone."
-
-    def guest_can_add_product_to_basket(self):
-        # Start all checking
-        self.add_product_to_basket()
-        self.solve_quiz_and_get_code()
-        self.guest_can_see_message_product_add_to_basket()
-        self.guest_can_see_same_product_name()
-        self.guest_can_see_message_price_basket()
-        self.guest_can_see_correct_price_basket()
 
