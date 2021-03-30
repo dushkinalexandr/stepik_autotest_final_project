@@ -1,5 +1,4 @@
 from .base_page import BasePage
-from ..locators import MainPageLocators
 
 # точка в импорте
 # ImportError: attempted relative import with no known parent package
