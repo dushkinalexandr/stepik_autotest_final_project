@@ -28,8 +28,8 @@ test_main_page.py - тесты взаимодействия с главной с
 test_product_page - тест добавления товара в корзину, проверка соответствия названия и цены.
 
 
-###Команда для запуска финальной проверки:
-**pytest -v --tb=line --language=en -m need_review test_product_page.py
+### Команда для запуска финальной проверки:
+** pytest -v --tb=line --language=en -m need_review test_product_page.py
 
-####Ожидаемый результат:
+#### Ожидаемый результат:
 12 passed, 8 deselected, 1 xfailed
