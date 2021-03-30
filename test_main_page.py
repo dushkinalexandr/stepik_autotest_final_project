@@ -8,7 +8,6 @@ import pytest
 class TestLoginFromMainPage():
 
     def test_guest_can_go_to_login_page(self, browser):
-        # link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209?promo=midsummer "
         link = "http://selenium1py.pythonanywhere.com/"
         page = MainPage(browser, link)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
         page.open()                     # открываем страницу
@@ -30,25 +29,28 @@ def test_guest_should_see_login_page(browser):
     login_page.should_be_login_page()
 
 
-# def test_guest_should_see_login_url(browser):
-#     link = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
-#     page_form = LoginPage(browser, link)
-#     page_form.open()
-#     page_form.should_be_login_url()
-#
-#
-# def test_guest_should_see_login_form(browser):
-#     link = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
-#     page_form = LoginPage(browser, link)
-#     page_form.open()
-#     page_form.should_be_login_form()
-#
-#
-# def test_guest_should_see_register_form(browser):
-#     link = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
-#     page_form = LoginPage(browser, link)
-#     page_form.open()
-#     page_form.should_be_register_form()
+@pytest.mark.skip
+def test_guest_should_see_login_url(browser):
+    link = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
+    page_form = LoginPage(browser, link)
+    page_form.open()
+    page_form.should_be_login_url()
+
+
+@pytest.mark.skip
+def test_guest_should_see_login_form(browser):
+    link = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
+    page_form = LoginPage(browser, link)
+    page_form.open()
+    page_form.should_be_login_form()
+
+
+@pytest.mark.skip
+def test_guest_should_see_register_form(browser):
+    link = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
+    page_form = LoginPage(browser, link)
+    page_form.open()
+    page_form.should_be_register_form()
 
 
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
